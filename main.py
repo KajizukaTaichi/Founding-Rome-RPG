@@ -5,6 +5,7 @@ class Rome:
         self.army = 0
         self.economic = 100
         self.city = 0
+        self.morale = 10
 
     def opening(self):
         msg = ["双子の兄弟、ロムルスとレムスは、神々の子として古代のアルバ・ロンガで誕生した",
@@ -19,32 +20,45 @@ class Rome:
         input("(c) 2023 梶塚太智. All rights reserved\n")
 
     def policy(self):
-        print("現在のレギオー:", self.army)
-        print("現在のローマ都市:", self.city)
+        print("レギオー:", self.army)
+        print("市民の士気:", self.morale)
+        print("ローマ都市:", self.city)
         print("現在の持っている金:", self.economic, "デナリウス")
-        select = input("A: 都市建設する？B: 戦争する？")
+        select = input("元老院　{ A:都市建設する？　B:戦争する？　C:民会で演説する？")
         if "A" in select:
             city_cost = int(input("都市建設にいくら使う？"))
             self.develop_city(city_cost)
         elif "B" in select:
             army_cost = int(input("戦争にいくら使う？"))
             self.battle_war(army_cost)
+        elif "C" in select:
+            speech_cost = int(input("演説にいくら使う？"))
+            self.speech(speech_cost)
         else:
-            print("元老院: そんなインペリウムないですよ")
+            print("元老院 { そんなインペリウムないですよ")
+
+    def speech(self, cost):
+        self.morale += cost; self.economic -= cost
+        print("市民 { いいぞ！ロムルス王")
+        print(f"市民の士気が{cost}アップ!")
 
     def battle_war(self, cost: int):
         print("戦争開始！ワーワー")
-        enemy = int((rd.randint(6,12) / 10) * self.economic)
+        enemy = int((rd.randint(6,13) / 10) * self.economic)
         self.army += cost; self.economic -= cost
         
-        if self.army > enemy:
+        if ((self.army + self.morale) / 2)  > enemy:
             print("敵は弱いぞ:",enemy)    
             print(f"勝利！賠償金{(reward := int(enemy * 2))}デナリウス獲得") 
             self.economic += reward
+            print(f"市民の士気が{reward}アップ！")
+            self.morale += reward
         else:
             print("敵は強いぞ:",enemy)
             print(f"敗北・・・。賠償金{(damage := int(enemy / 2))}デナリウス払う") 
             self.economic -= damage
+            print(f"市民の士気が{damage}ダウン")
+            self.morale -= damage
 
 
     def develop_city(self, cost: int):
