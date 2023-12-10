@@ -21,7 +21,7 @@ class Rome:
     def policy(self):
         print("現在のレギオー:", self.army)
         print("現在のローマ都市:", self.city)
-        print("現在の持っている金:", self.economic)
+        print("現在の持っている金:", self.economic, "デナリウス")
         select = input("A：都市建設する？B:戦争する？")
         if "A" in select:
             city_cost = int(input("都市建設にいくら使う？"))
@@ -29,26 +29,36 @@ class Rome:
         elif "B" in select:
             army_cost = int(input("戦争にいくら使う？"))
             self.battle_war(army_cost)
+        else:
+            print("元老院：そんなインペリウムないですよ")
 
     def battle_war(self, cost: int):
         print("戦争開始！ワーワー")
+        enemy = (rd.randint(8,12) / 10) * self.economic 
         self.army += cost; self.economic -= cost
-        enemy = (rd.randint(1,30) / 10) * self.army    
         
         if self.army > enemy:
-            print("敵は弱いぞ！")    
-            print(f"勝利！報酬{enemy}ゲット") 
+            print("敵は弱いぞ:",enemy)    
+            print(f"勝利！賠償金{enemy}デナリウス獲得") 
             self.economic += int(enemy)
         else:
-            print("敵は強いぞ！")
-            print(f"敗北・・・。賠償金{(damage := enemy / 2)}払う") 
+            print("敵は強いぞ:",enemy)
+            print(f"敗北・・・。賠償金{(damage := enemy / 2)}デナリウス払う") 
             self.economic -= int(damage)
 
 
     def develop_city(self, cost: int):
         print(f"街を{cost}立派にした！")
         self.city += cost; self.economic -= cost
+        self.is_clear()
 
+    def is_clear(self):
+        if self.city >= 5000:
+            input("ゲームクリア！")
+            input("ユピテルは風を遣わしてロムルス王の伝説の生涯は終わりましたとさ")
+            input("めでたしめでたし")
+
+            exit(0) 
 
 
 if __name__ == "__main__":
