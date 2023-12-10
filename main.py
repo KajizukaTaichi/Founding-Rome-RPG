@@ -21,11 +21,15 @@ class Rome:
 
     def policy(self):
         input()
-        print("レギオー: 軍事レベル", self.army)
-        print("市民の士気: レベル", self.morale)
-        print("ローマ: 都市レベル", self.city)
-        print("経済力:", self.economic, "デナリウス")
-        select = input("元老院　{ A:都市建設する？　B:戦争する？　C:民会で演説する？")
+        print("+-- 現在の状況")
+        print("| 市民　　　: 士気レベル", self.morale)
+        print("| レギオー　: 軍事レベル", self.army)
+        print("| ローマ　　: 都市レベル", self.city)
+        print("| 経済力　　:", self.economic, "デナリウス")
+        
+        print("+-- 元老院")
+        print("| A:都市建設する？　B:戦争する？　C:民会で演説する？")
+        select = input("インペリウムを入力してください> ")
         if "A" in select or "a" in select:
             try: 
                 cost = int(input("都市建設にいくら使う？"))
@@ -72,7 +76,8 @@ class Rome:
         else:
             print("敵は強いぞ:軍事レベルが",enemy,"もある")
 
-            select = input("元老院 { 勝ち目がないな、和平しとく？ (Yes/No)")
+            print("元老院 { 勝ち目がないな、和平しとく？ (Yes/No)")
+            select = input("インペリウムを入力してください> ")
             if select == "No":
                 print("元老院 { えっ！負けるかもしれない戦争をするの？")
 
