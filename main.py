@@ -23,27 +23,30 @@ class Rome:
         input()
         print("レギオー:", self.army)
         print("市民の士気:", self.morale)
-        print("ローマ都市:", self.city)
-        print("現在の持っている金:", self.economic, "デナリウス")
+        print("ローマ都市:レベル", self.city)
+        print("経済力:", self.economic, "デナリウス")
         select = input("元老院　{ A:都市建設する？　B:戦争する？　C:民会で演説する？")
         if "A" in select or "a" in select:
             try: 
-                city_cost = int(input("都市建設にいくら使う？"))
+                cost = int(input("都市建設にいくら使う？"))
             except:
-                city_cost = self.economic / 10 
-            self.develop_city(city_cost)
+                cost = self.economic / 10 
+                print(f"元老院は{cost}デナリウスを使う決議をした")
+            self.develop_city(cost)
         elif "B" in select or "b" in select:
             try: 
-                army_cost = int(input("戦争にいくら使う？"))
+                cost = int(input("戦争にいくら使う？"))
             except:
-                army_cost = self.economic / 10 
-            self.battle_war(army_cost)
+                cost = self.economic / 10 
+                print(f"元老院は{cost}デナリウスを使う決議をした")
+            self.battle_war(cost)
         elif "C" in select or "c" in select:
             try:
-                speech_cost = int(input("演説にいくら使う？"))
+                cost = int(input("演説にいくら使う？"))
             except:
-                speech_cost = self.economic / 10 
-            self.speech(speech_cost)
+                cost = self.economic / 10 
+                print(f"元老院は{cost}デナリウスを使う決議をした")
+            self.speech(cost)
         else:
             print("元老院 { そんなインペリウムないですよ")
 
@@ -59,6 +62,9 @@ class Rome:
         
         if ((self.army + self.morale) / 2)  > enemy:
             print("敵は弱いぞ:軍事力が",enemy,"しかない")
+            input("絶対勝てる、勇気を持って行くぞー！")
+            print("おー！")
+
             print(f"勝利！賠償金{(reward := int(enemy * 2))}デナリウス獲得") 
             self.economic += reward
             print(f"市民の士気が{reward}アップ！")
@@ -70,7 +76,7 @@ class Rome:
             if select == "No":
                 print("元老院 { えっ！負けるかもしれない戦争をするの？")
 
-                print(f"敗北・・・。賠償金{(damage := int(enemy / 2))}デナリウス払う") 
+                print(f"敗北・・・。賠償金{(damage := int(enemy * 2))}デナリウス払う") 
                 self.economic -= damage
                 print(f"市民の士気が{damage}ダウン")
                 self.morale -= damage
