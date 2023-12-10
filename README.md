@@ -3,7 +3,7 @@
 このプロジェクトは、古代ローマの建国伝説を基にしたPython製のRPGゲームです。プレイヤーはロムルス王になりきって、古代ローマの建国と発展に挑戦します。
 |ゲームの様子|
 |:-|
-![image](https://github.com/KajizukaTaichi/Founding-Rome-RPG/assets/122075081/03265cdc-2150-4743-b2ef-bf74752aef9a)|
+|![image](https://github.com/KajizukaTaichi/Founding-Rome-RPG/assets/122075081/3f19d2ac-bbc3-454f-9b43-c8bafa4bd1eb)|
 ## 概要
 
 このゲームは以下の要素を含んでいます：
