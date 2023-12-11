@@ -10,13 +10,13 @@ class Rome:
     def opening(self):
         msg = ["双子の兄弟、ロムルスとレムスは、神々の子として古代のアルバ・ロンガで誕生した",
             "彼らは運命に導かれ羊飼いに育てられたが、彼らの運命は、遥かなるローマの創設にあった。",
-            "ロムルスとレムスの成長と絆が続く中、兄弟は分かれることを余儀なくされたるという悲劇的な運命の転換を迎える。",
-            "しかし、ロムルス王の冒険は力と栄光の都市を求め古代の大地にローマの物語が幕を開けるのだった。\n" ]
+            "ロムルスとレムスの成長と絆が続く中、兄弟は分かれることを余儀なくされるという悲劇的な運命の転換を迎える。",
+            "しかし、ロムルス王の冒険は力と栄光の都市を求め古代の大地にローマの物語が幕を開けるのだった。" ]
         
         for i in msg:
             input(i)
 
-        print(" -- ローマ建国RPG --")
+        print("\n -- ローマ建国RPG --")
         print("(c) 2023 梶塚太智. All rights reserved")
 
     def policy(self):
@@ -53,6 +53,7 @@ class Rome:
             self.speech(cost)
         else:
             print("元老院 { そんなインペリウムないですよ")
+        self.is_clear()
 
     def speech(self, cost):
         self.morale += cost; self.economic -= cost
@@ -89,11 +90,10 @@ class Rome:
                 print("元老院は和平の決議をし、ローマは敵と和平を結んだ！")
 
     def develop_city(self, cost: int):
-        print(f"街を{cost}デナリウス分立派にした！")
-        self.city += (cost + self.morale); self.economic -= cost
-        print(f"報酬{(reward := int(self.city / 6))}デナリウス獲得！")
+        print(f"ローマの都市レベルを{(level := (cost + self.morale) / 2)}上げた！")
+        self.city += level; self.economic -= cost
+        print(f"経済力が{(reward := int(self.city / 6))}デナリウス向上した")
         self.economic += reward
-        self.is_clear()
 
     def is_clear(self):
         if self.economic < -1000:
