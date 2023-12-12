@@ -96,7 +96,7 @@ class Rome:
         self.economic += reward
 
     def is_clear(self):
-        if self.economic < -1000:
+        if self.economic < -100:
             print(f"経済が{self.economic}デナリウスまで悪化した。ゲームオーバー")
             exit(0)
         elif self.city > 9999:
