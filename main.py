@@ -62,11 +62,11 @@ class Rome:
 
     def battle_war(self, cost: int):
         print("戦争開始！ワーワー")
-        enemy = int((rd.randint(6,14) / 10) * self.economic)
+        enemy = int((rd.randint(5,13) / 10) * self.economic)
         self.army += cost; self.economic -= cost
         
         if ((self.army + self.morale) / 2)  > enemy:
-            print("敵は弱いぞ:軍事レベルが",enemy,"しかない")
+            print("敵は弱いぞ: 軍事レベルが",enemy,"しかない")
             input("絶対勝てる、勇気を持って行くぞー！")
             print("市民 { おー！")
 
@@ -75,7 +75,7 @@ class Rome:
             print(f"市民の士気がレベル{reward}アップ！")
             self.morale += reward
         else:
-            print("敵は強いぞ:軍事レベルが",enemy,"もある")
+            print("敵は強いぞ: 軍事レベルが",enemy,"もある")
 
             print("元老院 { 勝ち目がないな、和平しとく？ (Yes/No)")
             select = input("インペリウムを入力してください> ")
@@ -97,10 +97,11 @@ class Rome:
 
     def is_clear(self):
         if self.economic < -1000:
-            print(f"借金が{abs(self.economic)}デナリウスに膨れ上がった。ゲームオーバー")
+            print(f"経済が{self.economic}デナリウスまで悪化した。ゲームオーバー")
             exit(0)
-        elif self.city >= 5000:
-            input("ゲームクリア！")
+        elif self.city > 9999:
+            input()
+            input(f"ローマの都市レベルが{self.city}になった。ゲームクリア！")
             input("ユピテルが風を遣わしてロムルス王の伝説の生涯は終わりましたとさ")
             input("めでたしめでたし")
             exit(0)
